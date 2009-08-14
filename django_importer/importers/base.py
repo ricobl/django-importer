@@ -6,8 +6,9 @@
 Importers for Django models.
 Developed and maintained by Enrico Batista da Luz <rico.bl@gmail.com>
 
-To use an existent importer, configure the `Meta` class properties:
+To use an existent importer, configure the class properties:
 
+  * `model`: the model to create instances from the data.
   * `fields`: which fields in your model you want to import from the source.
   * `field_map`: the mapping of your field models to the source fields.
   * `unique_fields`: fields that identify an item as unique.
@@ -20,29 +21,17 @@ importers.
 from traceback import format_exception
 import sys
 
-class ImporterBase(type):
-    """
-    Metaclass for importers.
-    """
-    def __new__(cls, name, bases, attrs):
-        # TODO: write a smarter meta class
-        new_class = super(ImporterBase, cls).__new__(cls, name, bases, attrs)
-        new_class._meta = new_class.Meta()
-        return new_class
-
 class Importer(object):
     """
     Base class to create importers for different sources.
     """
-    __metaclass__ = ImporterBase
     
-    class Meta:
-        fields = ()
-        field_map = {}
-        unique_fields = ()
+    fields = ()
+    field_map = {}
+    unique_fields = ()
+    model = None
     
-    def __init__(self, model, source=None):
-        self.model = model
+    def __init__(self, source=None):
         self.source = source
         self.loaded = False
         self.errors = []
@@ -60,6 +49,7 @@ class Importer(object):
         """
         Parses all data from the source, saving model instances.
         """
+        # Checks if the source is loaded
         if not self.loaded:
             self.load(self.source)
         
@@ -73,24 +63,24 @@ class Importer(object):
             # Try to save the instance or keep the error
             try:
                 self.save_item(item, data, instance)
-            except:
+            except Exception, e:
                 self.save_error(data, sys.exc_info())
+
+        # Unload the source
+        self.unload()
     
     def parse_item(self, item):
         """
         Receives an item and returns a dictionary of field values.
         """
-        # Get importer options (Meta)
-        opts = self._meta
-        
-        # Create a dictionary from values for each field in Meta.fields
+        # Create a dictionary from values for each field
         parsed_data = {}
         
-        for field_name in opts.fields:
+        for field_name in self.fields:
             # A field-name may be mapped to another identifier on the source,
             # it could be a XML path or a CSV column name / position.
             # Defaults to the field-name itself.
-            source_name = opts.field_map.get(field_name, field_name)
+            source_name = self.field_map.get(field_name, field_name)
             
             # Uses a custom method "parse_%(field_name)"
             # or get the value from the item
@@ -108,8 +98,8 @@ class Importer(object):
         """
         Get an item from the database or an empty one if not found.
         """
-        # Get unique fields from Meta
-        unique_fields = self._meta.unique_fields
+        # Get unique fields
+        unique_fields = self.unique_fields
         
         # If there are no unique fields option, all items are new
         if not unique_fields:
@@ -135,10 +125,23 @@ class Importer(object):
         return instance
     
     def save_item(self, item, data, instance, commit=True):
-        """        Saves a model instance to the database.        """
+        """
+        Saves a model instance to the database.
+        """
         if commit:
             instance.save()
         return instance
+    
+    def unload(self):
+        """
+        Unloads the source file.
+        Useful to close open files and free resources.
+
+        Not a required method by subclasses.
+
+        Rembember to unset the ``loaded`` when extending this method.
+        """
+        self.loaded = False
     
     ### ABSTRACT METHODS #############
     
@@ -149,7 +152,7 @@ class Importer(object):
         Must be implemented on subclasses or will raise `NotImplementedError`.
         """
         raise NotImplementedError
-    
+
     def get_items(self):
         """
         Get the list of items for the current source.
@@ -167,5 +170,4 @@ class Importer(object):
         Must be implemented on subclasses or will raise `NotImplementedError`.
         """
         raise NotImplementedError
-
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from django.utils.encoding import smart_str, force_unicode
 from django_importer.importers.base import Importer
+from django.utils.encoding import smart_str, force_unicode
 
 # Try to import the best match for `ElementTree`.
 # Prioritizes the C port `cElementTree` for *much* better performance.
@@ -19,9 +19,8 @@ class XMLImporter(Importer):
     Import models from a local XML file. Requires `ElementTree`.
     """
     
-    class Meta(Importer.Meta):
-        # Default item node name
-        item_tag_name = 'item'
+    # The name of the XML node that represents an item
+    item_tag_name = 'item'
     
     def load(self, source):
         """
@@ -36,10 +35,9 @@ class XMLImporter(Importer):
         """
         Iterator of the list of items in the XML source.
         """
-        opts = self._meta
         # Use `iterparse`, it's more efficient, specially for big files
         for event, item in ElementTree.iterparse(self.source):
-            if item.tag == opts.item_tag_name:
+            if item.tag == self.item_tag_name:
                 yield item
                 # Releases the item from memory
                 item.clear()
