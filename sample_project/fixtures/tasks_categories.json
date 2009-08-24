@@ -1,0 +1,26 @@
+[
+    {
+        "pk": 1, 
+        "model": "tasks.category", 
+        "fields": {
+            "name": "Desenvolvimento", 
+            "slug": "desenvolvimento"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "tasks.category", 
+        "fields": {
+            "name": "Rede", 
+            "slug": "rede"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "tasks.category", 
+        "fields": {
+            "name": "Suporte", 
+            "slug": "suporte"
+        }
+    }
+]

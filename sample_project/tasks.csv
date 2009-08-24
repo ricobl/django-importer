@@ -1,0 +1,24 @@
+"Categoria","Date","Inicio","Fim","Duração","Descrição","Modelo","Temp1","Temp2","Criadas","Trabalhadas","Fechadas","To Test","Open"
+"Desenv",Ter 04,09:30,13:00,03:30,"#5318",,,,,,,,
+"Desenv",Ter 04,15:00,16:00,01:00,"Revisão das tarefas efetuadas",,,,,,,,
+"Rede",Ter 04,16:00,23:00,07:00,"Finalização da migração do servidor",,,,13,37,1,,
+"Desenv",Qua 05,15:30,16:30,01:00,"#1528",,,,,,,,
+"Suporte",Qua 05,16:30,17:30,01:00,"Testes com Allston/Ambev",,,,,,,,
+"Rede",Qua 05,17:30,19:00,01:30,"Backup para o novo servidor",,,,,,,,
+"Desenv",Qua 05,19:00,20:00,01:00,"Revisão das tarefas pendentes / scripts",,,,15,37,4,,
+"Desenv",Qui 06,09:30,13:00,03:30,"Projeto Q",,,,,,,,
+"Rede",Qui 06,16:00,17:00,01:00,"Instalação do Roteador wifi",,,,,,,,
+"Rede",Qui 06,17:00,20:00,03:00,"#5437",,,,,,,,
+"Rede",Sáb 08,10:30,16:30,06:00,"Cópia do novo servidor / Python",,,,,,,,
+"Rede",Sáb 08,16:30,18:30,02:00,"Revisão das tarefas efetuadas",,,,12,69,41,36,104
+"Desenv",Seg 10,14:30,15:30,01:00,"Reunião com Elias/Fabricio",,,,,,,,
+"Desenv",Seg 10,15:30,20:30,05:00,"#5443 #5441 ",,,,,,,,
+"Desenv",Ter 11,10:30,03:00,16:30,"MailBackup",,,,,,,,
+"Desenv",Ter 11,14:00,19:30,05:30,"Revisão das telas de parâmetros e OQF",,,,,,,,
+"Desenv",Qua 12,15:00,18:00,03:00,"MailBackup / Revisão do Backup c/ Fabricio",,,,,,,,
+"Desenv",Qua 12,18:00,20:00,02:00,"#5458",,,,,,,,
+"Desenv",Qua 12,20:00,20:30,00:30,"Revisão,das tarefas efetuadas",,,,20,49,20,35,105
+"Suporte",Qui 13,10:30,12:30,02:00,,,,,,,,,
+"Desenv",Qui 13,14:30,19:30,05:00,,,,,,,,,
+
+
