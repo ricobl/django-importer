@@ -1,5 +1,4 @@
-django-importer
-===============
+# django-importer
 
 Importers for Django models.
 Developed and maintained by Enrico Batista da Luz <rico.bl@gmail.com>
@@ -11,8 +10,7 @@ Data formats are commonly denormalized. The project doesn't aim to be the
 "all-in-one" / "every-format" importer, but to provide a clean an flexible
 interface to write custom importers.
 
-Features
-========
+# Features
 
   * currently supported formats: XML
   * easy to support new formats (CSV, Yaml, JSON, etc.)
@@ -20,8 +18,7 @@ Features
   * detects new / changed items
   * many hooks to customize the importer behaviour
 
-Usage
-=====
+# Usage
 
 Actions speaks louder than words, so let's go ahead with a practical example.
 
