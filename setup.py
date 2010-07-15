@@ -1,6 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 # <django-importer - Importers for Django models>
-# Copyright (C) <2010>  Enrico Batista da Luz <rico.bl@gmail.com>
+# Copyright (C) <2009>  Enrico Batista da Luz <rico.bl@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,9 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""
-django-importer - Importers for Django models
-"""
+import os
+from django_importer import version
+from setuptools import setup
 
-version = '0.5'
+setup(
+    name='django_importer',
+    version=version,
+    description='Data importers for Django models',
+    author=u'Enrico Batista da Luz',
+    author_email='rico.bl@gmail.com',
+    url='http://github.com/ricobl/django-importer/',
+    packages=['django_importer', 'django_importer.importers'],
+)
 
