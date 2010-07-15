@@ -22,7 +22,7 @@ from django_importer import version
 from setuptools import setup
 
 setup(
-    name='django_importer',
+    name='django-importer',
     version=version,
     description='Data importers for Django models',
     author=u'Enrico Batista da Luz',
