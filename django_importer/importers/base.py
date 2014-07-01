@@ -63,7 +63,7 @@ class Importer(object):
             # Try to save the instance or keep the error
             try:
                 self.save_item(item, data, instance)
-            except Exception, e:
+            except Exception as e:
                 self.save_error(data, sys.exc_info())
 
         # Unload the source
