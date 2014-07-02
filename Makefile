@@ -1,2 +1,3 @@
 upload:
-	@sudo python setup.py sdist upload --show-response
+	@python ./setup.py sdist upload -r pyorg
+
