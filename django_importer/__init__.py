@@ -19,5 +19,5 @@
 django-importer - Importers for Django models
 """
 
-version = '0.5'
+version = '0.6'
 
