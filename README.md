@@ -57,21 +57,24 @@ publication date to the next hour.
 from django_importer.importers.xml import XmlImporter
 from datetime import datetime, timedelta
 
+from news.models import Entry
+
 class MyXmlImporter(XmlImporter):
-    class Meta(XmlImporter.Meta):
-        # XmlImporter specific meta property: the nodename that identifies an XML item
-        item_tag_name = 'item'
-        # A list of model field names expected to be imported from the source
-        fields = ('external_id', 'headline', 'creation_date', 'story')
-        # A dictionary mapping model field names to data source identifiers
-        # In this case mappings points to XML nodes
-        field_map = {'external_id': 'id',
-                     'creation_date': 'date',
-                     'headline': 'title',
-                     'story': 'content',
-                    }
-        # List of fields that identifies an item as unique
-        unique_fields = ('external_id',)
+    # Specify the model this Importer works against
+    model = Entry
+    # XmlImporter specific  property: the nodename that identifies an XML item
+    item_tag_name = 'item'
+    # A list of model field names expected to be imported from the source
+    fields = ('external_id', 'headline', 'creation_date', 'story')
+    # A dictionary mapping model field names to data source identifiers
+    # In this case mappings points to XML nodes
+    field_map = {'external_id': 'id',
+                 'creation_date': 'date',
+                 'headline': 'title',
+                 'story': 'content',
+                }
+    # List of fields that identifies an item as unique
+    unique_fields = ('external_id',)
 
     def parse_creation_date(self, item, field_name, source_name):
         # Get the value `source_name` from the XML `item` for the field `field_name`
@@ -92,9 +95,8 @@ class MyXmlImporter(XmlImporter):
 And that's it. Now we can instantiate our importer and start parsing.
 
 ```python
-from news.models import Entry
 from news.importers import MyXmlImporter
 
-importer = MyXmlImporter(Entry, 'path/to/source.xml')
+importer = MyXmlImporter('path/to/source.xml')
 importer.parse()
 ```
