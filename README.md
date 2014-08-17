@@ -1,7 +1,6 @@
 # django-importer
 
 Importers for Django models.
-Developed and maintained by Enrico Batista da Luz <rico.bl@gmail.com>
 
 Provides basic functionality to import data into Django models, allowing easy
 creation of custom importers. Highly extensible and customizable.
